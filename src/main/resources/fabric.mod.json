@@ -3,15 +3,14 @@
 	"id": "skin-textures",
 	"version": "${version}",
 	"name": "Skin Textures",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A Minecraft mod to change player skins through resource packs",
 	"authors": [
 		"Benonardo"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Benonardo/Skin-Textures"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/skin-textures/icon.png",
 	"environment": "client",
 	"mixins": [
