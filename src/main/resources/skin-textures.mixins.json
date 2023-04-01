@@ -5,9 +5,10 @@
   "client": [
     "AbstractClientPlayerEntityMixin",
     "DummyClientPlayerEntityMixin",
+    "OtherClientPlayerEntityMixin",
     "SkullBlockEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }
