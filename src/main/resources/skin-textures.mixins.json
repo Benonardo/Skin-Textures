@@ -3,7 +3,8 @@
 	"package": "com.benonardo.skintextures.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"client": [
-		"PlayerEntityRendererMixin"
+		"PlayerEntityRendererMixin",
+		"SkullBlockEntityRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
