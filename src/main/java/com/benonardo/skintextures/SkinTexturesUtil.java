@@ -11,12 +11,16 @@ public final class SkinTexturesUtil {
 
     @Nullable
     public static Identifier getResourcePackSkin(GameProfile profile) {
-        var nameId = profile.getName() == null ? null : new Identifier("skintextures", "textures/entity/player/" + profile.getName().toLowerCase() + ".png");
-        var uuidId = profile.getId() == null ? null : new Identifier("skintextures", "textures/entity/player/" + profile.getId().toString().toLowerCase() + ".png");
-        if (nameId != null && MinecraftClient.getInstance().getResourceManager().getResource(nameId).isPresent()) {
-            return nameId;
-        } else if (uuidId != null && MinecraftClient.getInstance().getResourceManager().getResource(uuidId).isPresent()) {
-            return uuidId;
+        try {
+            var nameId = new Identifier("skintextures", "textures/entity/player/" + profile.getName().toLowerCase() + ".png");
+            var uuidId = new Identifier("skintextures", "textures/entity/player/" + profile.getId().toString().toLowerCase() + ".png");
+            if (MinecraftClient.getInstance().getResourceManager().getResource(nameId).isPresent()) {
+                return nameId;
+            } else if (MinecraftClient.getInstance().getResourceManager().getResource(uuidId).isPresent()) {
+                return uuidId;
+            }
+        } catch (Exception ignored) {
+
         }
         return null;
     }
