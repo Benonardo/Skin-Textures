@@ -16,16 +16,31 @@ public final class SkinTexturesUtil {
 
     @Nullable
     public static Identifier getResourcePackSkin(GameProfile profile) {
+        return getResourcePackPlayerTexture("/", profile);
+    }
+
+    @Nullable
+    public static Identifier getResourcePackCape(GameProfile profile) {
+        return getResourcePackPlayerTexture("/cape/", profile);
+    }
+
+    @Nullable
+    public static Identifier getResourcePackElytra(GameProfile profile) {
+        return getResourcePackPlayerTexture("/elytra/", profile);
+    }
+
+    @Nullable
+    private static Identifier getResourcePackPlayerTexture(String path, GameProfile profile) {
         try {
-            var uuidId = new Identifier("skintextures", "textures/entity/player/" + profile.getId().toString().toLowerCase() + ".png");
+            var uuidId = new Identifier("skintextures", "textures/entity/player" + path + profile.getId().toString().toLowerCase() + ".png");
             if (MinecraftClient.getInstance().getResourceManager().getResource(uuidId).isPresent()) {
                 return uuidId;
             } else {
-                var nameId = new Identifier("skintextures", "textures/entity/player/" + profile.getName().toLowerCase() + ".png");
+                var nameId = new Identifier("skintextures", "textures/entity/player" + path + profile.getName().toLowerCase() + ".png");
                 if (MinecraftClient.getInstance().getResourceManager().getResource(nameId).isPresent()) {
                     return nameId;
                 } else {
-                    var hashId = new Identifier("skintextures", "textures/entity/player/" + getLowerCaseHash(profile) + ".png");
+                    var hashId = new Identifier("skintextures", "textures/entity/player" + path + getLowerCaseHash(profile) + ".png");
                     if (MinecraftClient.getInstance().getResourceManager().getResource(hashId).isPresent()) {
                         return hashId;
                     }

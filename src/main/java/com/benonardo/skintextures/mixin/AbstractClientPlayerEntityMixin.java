@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(AbstractClientPlayerEntity.class)
+// Priority higher = inject at the head of everything else
+@Mixin(value = AbstractClientPlayerEntity.class, priority = 2000)
 public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
 
     public AbstractClientPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
@@ -22,6 +23,22 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "getSkinTexture", at = @At("HEAD"), cancellable = true)
     protected void useResourcePackSkinIfPresent(CallbackInfoReturnable<Identifier> cir) {
         var id = SkinTexturesUtil.getResourcePackSkin(this.getGameProfile());
+        if (id != null) {
+            cir.setReturnValue(id);
+        }
+    }
+
+    @Inject(method = "getCapeTexture", at = @At("HEAD"), cancellable = true)
+    protected void useResourcePackCapeIfPresent(CallbackInfoReturnable<Identifier> cir) {
+        var id = SkinTexturesUtil.getResourcePackCape(this.getGameProfile());
+        if (id != null) {
+            cir.setReturnValue(id);
+        }
+    }
+
+    @Inject(method = "getElytraTexture", at = @At("HEAD"), cancellable = true)
+    protected void useResourcePackElytraIfPresent(CallbackInfoReturnable<Identifier> cir) {
+        var id = SkinTexturesUtil.getResourcePackElytra(this.getGameProfile());
         if (id != null) {
             cir.setReturnValue(id);
         }

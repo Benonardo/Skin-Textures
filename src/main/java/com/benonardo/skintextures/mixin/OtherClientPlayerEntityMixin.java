@@ -12,7 +12,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(OtherClientPlayerEntity.class)
+// Priority higher = inject at the head of everything else
+@Mixin(value = OtherClientPlayerEntity.class, priority = 2000)
 public class OtherClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 
     public OtherClientPlayerEntityMixin(ClientWorld world, GameProfile profile) {
