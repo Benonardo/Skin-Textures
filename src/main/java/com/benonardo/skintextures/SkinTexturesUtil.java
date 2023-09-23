@@ -11,7 +11,7 @@ public final class SkinTexturesUtil {
     private SkinTexturesUtil() {}
 
     public static String getLowerCaseHash(GameProfile profile) {
-        return MinecraftClient.getInstance().getSkinProvider().getTextures(profile).get(MinecraftProfileTexture.Type.SKIN).getHash();
+        return Integer.toHexString(MinecraftClient.getInstance().getSkinProvider().getSkinTextures(profile).texture().hashCode());
     }
 
     @Nullable

@@ -17,10 +17,7 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-
-	maven { url = "https://jitpack.io" }
 	maven { url = "https://api.modrinth.com/maven" }
-	maven { url = "https://maven.enjarai.nl/releases" }
 }
 
 dependencies {
@@ -29,8 +26,7 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Compatibility, optional
-	modCompileOnly "maven.modrinth:show-me-your-skin:${project.showmeyourskin_version}"
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.0-rc.4")))
 }
 
 publishMods {
@@ -42,14 +38,12 @@ publishMods {
 	curseforge {
 		projectId = "844544"
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-		minecraftVersions.add("1.20")
-		minecraftVersions.add("1.20.1")
+		minecraftVersions.add("1.20.2")
 	}
 	modrinth {
 		projectId = "r3cTjDVA"
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-		minecraftVersions.add("1.20")
-		minecraftVersions.add("1.20.1")
+		minecraftVersions.add("1.20.2")
 	}
 	github {
 		repository = "Benonardo/Skin-Textures"
